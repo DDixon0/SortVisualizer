@@ -18,6 +18,8 @@ namespace SortVisualizer
 
         public Form1()
         {
+            Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
             InitializeComponent();
             PopulateDropdown();
         }

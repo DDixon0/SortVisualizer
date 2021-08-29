@@ -1,0 +1,15 @@
+Revert "form visual changes"
+
+This reverts commit 6abc27f8fd40e6c206c97bac47dd5fc51fb4e8a7.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   SortVisualizer/Form1.Designer.cs
+#	modified:   SortVisualizer/Form1.resx
+#
+"mistake"
