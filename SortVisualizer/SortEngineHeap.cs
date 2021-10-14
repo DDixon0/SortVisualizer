@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SortVisualizer
 {
-    class HeapSortEngine : ISortEngine
+    class SortEngineHeap : ISortEngine
     {
 
         private bool _sorted = false;
@@ -17,7 +17,7 @@ namespace SortVisualizer
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
 
-        public HeapSortEngine(int[] TheArray_In, Graphics g_In, int MaxVal_In)
+        public SortEngineHeap(int[] TheArray_In, Graphics g_In, int MaxVal_In)
         {
             TheArray = TheArray_In;
             g = g_In;

@@ -4,10 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-
 namespace SortVisualizer
 {
-    class InsertionSortEngine : ISortEngine
+    class SortEngineQuick : ISortEngine
     {
         private bool _sorted = false;
         private int[] TheArray;
@@ -16,15 +15,6 @@ namespace SortVisualizer
         Brush WhiteBrush = new System.Drawing.SolidBrush(System.Drawing.Color.White);
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
-        //Constructor for this class
-        public InsertionSortEngine(int[] TheArray_In, Graphics g_In, int MaxVal_In)
-        {
-            TheArray = TheArray_In;
-            g = g_In;
-            MaxVal = MaxVal_In;
-        }
-
-        //Checks if array is sorted
         public bool IsSorted()
         {
             for (int i = 0; i < TheArray.Count() - 1; i++)
@@ -37,31 +27,7 @@ namespace SortVisualizer
 
         public void NextStep()
         {
-
-            for (int i = 0; i < TheArray.Count() - 1; i++)
-            {
-                if (TheArray[i] > TheArray[i + 1])
-                {
-                    /*
-                    Swap(i, i + 1);
-                    i--;
-                    */
-                    
-                    //Swap Move to Front
-                    int j = i;
-                    while(TheArray[j] > TheArray[j + 1])
-                    {
-                        Swap(j, j + 1);
-
-                        //Edge case
-                        if (j == 0) break;
-
-                        j--;
-                    }
-                    return;
-                }
-            }
-
+            //throw new NotImplementedException();
         }
 
         private void Swap(int i, int p)
@@ -91,7 +57,5 @@ namespace SortVisualizer
                 g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.White), i, MaxVal - TheArray[i], 1, MaxVal);
             }
         }
-
-
     }
 }

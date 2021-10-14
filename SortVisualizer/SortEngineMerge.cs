@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SortVisualizer
 {
-    class MergeSortEngine : ISortEngine
+    class SortEngineMerge : ISortEngine
     {
         private bool _sorted = false;
         private int[] TheArray;
@@ -16,7 +16,7 @@ namespace SortVisualizer
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
         //Constructor for Merge Sort
-        public MergeSortEngine(int[] TheArray_In, Graphics g_In, int MaxVal_In)
+        public SortEngineMerge(int[] TheArray_In, Graphics g_In, int MaxVal_In)
         {
             TheArray = TheArray_In;
             g = g_In;
