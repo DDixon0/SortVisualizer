@@ -47,6 +47,7 @@ namespace SortVisualizer
             DrawBar(EndPoint, TheArray[EndPoint]);
         }
 
+        //Draw's New Bars
         private void DrawBar(int position, int height)
         {
             g.FillRectangle(BlackBrush, position, 0, 1, MaxVal);

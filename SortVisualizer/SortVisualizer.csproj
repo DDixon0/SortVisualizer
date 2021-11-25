@@ -51,16 +51,16 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HeapSortEngine.cs" />
     <Compile Include="ISortEngine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortEngineBubble.cs" />
     <Compile Include="SortEngineMoveToBack.cs" />
-	<Compile Include="SortEngineMerge.cs" />
-	<Compile Include="SortEngineInsertion.cs" />
-	<Compile Include="SortEngineHeap.cs" />
-	<Compile Include="SortEngineQuick.cs" />
+    <Compile Include="SortEngineMerge.cs" />
+    <Compile Include="SortEngineInsertion.cs" />
+    <Compile Include="SortEngineHeap.cs" />
+    <Compile Include="SortEngineQuick.cs" />
+    <Compile Include="SortEngineQuickRan.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

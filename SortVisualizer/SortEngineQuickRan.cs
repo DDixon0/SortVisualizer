@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 
 namespace SortVisualizer
 {
-    class SortEngineQuick : ISortEngine
+    class SortEngineQuickRan : ISortEngine
     {
         //private bool _sorted = false;
+        Random r = new Random();
         private int[] TheArray;
         private Graphics g;
         private int MaxVal;
         Brush WhiteBrush = new System.Drawing.SolidBrush(System.Drawing.Color.White);
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+        
 
         //Constructor for Merge Sort
-        public SortEngineQuick(int[] TheArray_In, Graphics g_In, int MaxVal_In)
+        public SortEngineQuickRan(int[] TheArray_In, Graphics g_In, int MaxVal_In)
         {
             TheArray = TheArray_In;
             g = g_In;
@@ -37,30 +39,30 @@ namespace SortVisualizer
 
         public void NextStep()
         {
-            quickSort(TheArray, 0, TheArray.Count() - 1);
+            quickSortran(TheArray, 0, TheArray.Count() - 1);
         }
 
         //Recursive
-        void quickSort(int [] array, int start, int end)
+        private void quickSortran(int [] array, int start, int end)
         {
+
             if (start < end)
             {
-
                 // find the pivot point
                 // elements smaller than pivot are on left of pivot
                 // elements greater than pivot are on righ of pivot
-                int pi = partition(array, start, end);
+                int pi = partition_r(array, start, end);
 
                 // recursive call on the left of pivot
-                quickSort(array, start, pi - 1);
+                quickSortran(array, start, pi - 1);
 
                 // recursive call on the right of pivot
-                quickSort(array, pi + 1, end);
+                quickSortran(array, pi + 1, end);
             }
         }
 
         // function to rearrange array and find pivot point
-        private int partition(int [] array, int start, int end)
+        private int partition(int[] array, int start, int end)
         {
 
             // select the rightmost element as pivot
@@ -89,6 +91,20 @@ namespace SortVisualizer
 
             // return the pivot point
             return (i + 1);
+        }
+
+        //function to randomly pivot
+        private int partition_r(int[] arr, int start, int end)
+        {
+            // Generate a random number in between
+            // low .. high
+            int random = start + r.Next(end-start);
+
+            // Swap A[random] with A[high]
+            Swap(random, end);
+
+            //Call normal pivot
+            return partition(arr, start, end);
         }
 
 
@@ -120,4 +136,5 @@ namespace SortVisualizer
             }
         }
     }
+
 }
