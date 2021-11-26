@@ -61,6 +61,7 @@
     <Compile Include="SortEngineHeap.cs" />
     <Compile Include="SortEngineQuick.cs" />
     <Compile Include="SortEngineQuickRan.cs" />
+    <Compile Include="SortEngineRadix.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -11,7 +11,6 @@ namespace SortVisualizer
     {
         void NextStep();
         bool IsSorted();
-
         void ReDraw();
     }
 }

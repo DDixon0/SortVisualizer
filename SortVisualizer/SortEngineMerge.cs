@@ -8,7 +8,6 @@ namespace SortVisualizer
 {
     class SortEngineMerge : ISortEngine
     {
-        private bool _sorted = false;
         private int[] TheArray;
         private Graphics g;
         private int MaxVal;
