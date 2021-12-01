@@ -15,6 +15,7 @@ namespace SortVisualizer
         Graphics g;
         BackgroundWorker bgw = null;
         bool Paused = false;
+        int thickness = 5;
 
         public Form1()
         {
@@ -37,6 +38,8 @@ namespace SortVisualizer
                 comboBox1.Items.Add(entry);
             }
             comboBox1.SelectedIndex = 0;
+
+            numericUpDown1.Value = 5;
         }
 
         //File Close Butoon Menu
@@ -44,7 +47,6 @@ namespace SortVisualizer
         {
             this.Close();
         }
-
         //Start Button
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -63,7 +65,6 @@ namespace SortVisualizer
             bgw.DoWork += new DoWorkEventHandler(bgw_DoWork);
             bgw.RunWorkerAsync(argument: comboBox1.SelectedItem);
         }
-
         //Pause/Resume Button
         private void btnPause_Click(object sender, EventArgs e)
         {
@@ -81,28 +82,28 @@ namespace SortVisualizer
             else
             {
                 if (bgw.IsBusy) return;
-                int NumEntries = panel1.Width;
+                int NumEntries = panel1.Width/thickness;
                 int MaxVal = panel1.Height;
                 Paused = false;
                 for (int i = 0; i < NumEntries; i++)
                 {
-                    g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Black), i, 0, 1, MaxVal);
-                    g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.White), i, MaxVal - TheArray[i], 1, MaxVal);
+                    g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Black), i* thickness, 0, thickness, MaxVal);
+                    g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.White), i* thickness, MaxVal - TheArray[i], thickness, MaxVal);
                 }
                 bgw.RunWorkerAsync(argument: comboBox1.SelectedItem);
             }
         }
-
         //Reset Button
         private void btnReset_Click(object sender, EventArgs e)
         {
             g = panel1.CreateGraphics();
-            int NumEntries = panel1.Width;
+            thickness = Decimal.ToInt32(numericUpDown1.Value);
+            int NumEntries = panel1.Width/thickness;
             int MaxVal = panel1.Height;
             TheArray = new int[NumEntries];
 
             //Draws background
-            g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Black), 0, 0, NumEntries, MaxVal);
+            g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Black), 0, 0, panel1.Width, MaxVal);
             Random rand = new Random();
 
             //Creates array of rectangle heights
@@ -110,14 +111,16 @@ namespace SortVisualizer
             {
                 TheArray[i] = rand.Next(0, MaxVal);
             }
+
+            //Draws each rectangle based on heights
             for (int i = 0; i < NumEntries; i++)
             {
-                g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.White), i, MaxVal - TheArray[i], 1, MaxVal);
+                g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.White), i*thickness, MaxVal - TheArray[i], thickness, MaxVal);
             }
         }
 
+        //Background worker, where sort is happening
         #region BackGroundStuff
-
         public void bgw_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             BackgroundWorker bw = sender as BackgroundWorker;
@@ -126,7 +129,7 @@ namespace SortVisualizer
             var ctors = type.GetConstructors();
             try
             {
-                ISortEngine se = (ISortEngine)ctors[0].Invoke(new object[] { TheArray, g, panel1.Height });
+                ISortEngine se = (ISortEngine)ctors[0].Invoke(new object[] { TheArray, g, panel1.Height, thickness});
                 while (!se.IsSorted() && (!bgw.CancellationPending))
                 {
                     se.NextStep();

@@ -13,15 +13,17 @@ namespace SortVisualizer
         private int[] TheArray;
         private Graphics g;
         private int MaxVal;
+        private int thickness;
         Brush WhiteBrush = new System.Drawing.SolidBrush(System.Drawing.Color.White);
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
         //Constructor for Merge Sort
-        public SortEngineQuick(int[] TheArray_In, Graphics g_In, int MaxVal_In)
+        public SortEngineQuick(int[] TheArray_In, Graphics g_In, int MaxVal_In, int thickness_In)
         {
             TheArray = TheArray_In;
             g = g_In;
             MaxVal = MaxVal_In;
+            thickness = thickness_In;
 
         }
 
@@ -106,8 +108,8 @@ namespace SortVisualizer
         //Draws NewBars
         private void DrawBar(int position, int height)
         {
-            g.FillRectangle(BlackBrush, position, 0, 1, MaxVal);
-            g.FillRectangle(WhiteBrush, position, MaxVal - TheArray[position], 1, MaxVal);
+            g.FillRectangle(BlackBrush, position* thickness, 0, thickness, MaxVal);
+            g.FillRectangle(WhiteBrush, position* thickness, MaxVal - TheArray[position], thickness, MaxVal);
         }
 
         //ReDraw the Screen

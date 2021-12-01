@@ -12,16 +12,18 @@ namespace SortVisualizer
         private int[] TheArray;
         private Graphics g;
         private int MaxVal;
+        private int thickness;
         Brush WhiteBrush = new System.Drawing.SolidBrush(System.Drawing.Color.White);
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
 
         //Constructor for this class
-        public SortEngineRadix(int[] TheArray_In, Graphics g_In, int MaxVal_In)
+        public SortEngineRadix(int[] TheArray_In, Graphics g_In, int MaxVal_In, int thickness_In)
         {
             TheArray = TheArray_In;
             g = g_In;
             MaxVal = MaxVal_In;
+            thickness = thickness_In;
         }
 
         public void NextStep()
@@ -93,8 +95,8 @@ namespace SortVisualizer
         {
             for (int i = 0; i < TheArray.Length; i++)
             {
-                g.FillRectangle(BlackBrush, i, 0, 1, MaxVal);
-                g.FillRectangle(WhiteBrush, i, MaxVal - TheArray[i], 1, MaxVal);
+                g.FillRectangle(BlackBrush, i* thickness, 0, thickness, MaxVal);
+                g.FillRectangle(WhiteBrush, i* thickness, MaxVal - TheArray[i], thickness, MaxVal);
             }
         }
 
